@@ -4,6 +4,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ActivateAccPage from "../pages/ActivateAccPage";
 import ChangePasswordPage from "../pages/ChangePasswordPage";
+import ChangePassByEmailPage from "../pages/ChangePassByEmailPage";
 
 const MainRouting = () => {
     return (
@@ -12,6 +13,10 @@ const MainRouting = () => {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/activate-acc" element={<ActivateAccPage />} />
             <Route path="/change-password" element={<ChangePasswordPage />} />
+            <Route
+                path="/change-password-by-email"
+                element={<ChangePassByEmailPage />}
+            />
         </Routes>
     );
 };
