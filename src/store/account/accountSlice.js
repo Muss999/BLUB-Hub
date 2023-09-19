@@ -20,7 +20,7 @@ const accountSlice = createSlice({
         builder
             .addCase(registerUser.fulfilled, (_, action) => {
                 console.log("RegisterUser work");
-                action.payload.navigate("/login");
+                action.payload.navigate("/activate-acc");
             })
             .addCase(registerUser.rejected, (state) => {
                 console.log("RegisterUser doesn't work");
