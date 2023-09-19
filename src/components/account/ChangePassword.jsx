@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearStatus } from "../../store/account/accountSlice";
 import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../store/account/accountAction";
 
@@ -10,7 +9,6 @@ const ChangePassword = () => {
         newPassword: "",
         newPasswordConfirm: "",
     });
-    const { status } = useSelector((state) => state.account);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     return (
@@ -47,12 +45,15 @@ const ChangePassword = () => {
             <button
                 onClick={() => {
                     navigate("/");
-                    console.log(userObj);
                     dispatch(changePassword({ userObj, navigate }));
                 }}
             >
                 Change Password
             </button>
+
+            <p onClick={() => navigate("/change-password-by-email")}>
+                Forgot your password?
+            </p>
         </div>
     );
 };

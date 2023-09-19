@@ -42,13 +42,11 @@ export const changePassword = createAsyncThunk(
         formData.append("old_password", userObj.oldPassword);
         formData.append("new_password", userObj.newPassword);
         formData.append("new_password_confirm", userObj.newPasswordConfirm);
-        console.log(config);
         let { data } = await axios.post(
             `${API}/api/v1/account/change_password/`,
             formData,
             config ? config : null
         );
-        console.log(data);
         return { data, navigate };
     }
 );
