@@ -19,15 +19,12 @@ const accountSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(registerUser.fulfilled, (_, action) => {
-                console.log("RegisterUser work");
                 action.payload.navigate("/activate-acc");
             })
             .addCase(registerUser.rejected, (state) => {
-                console.log("RegisterUser doesn't work");
                 state.status = "error";
             })
             .addCase(loginUser.fulfilled, (state, action) => {
-                console.log("login is working");
                 state.currentAccount = action.payload.userEmail;
                 addDataToLocalStorage(
                     action.payload.userEmail,
@@ -37,7 +34,6 @@ const accountSlice = createSlice({
                 action.payload.navigate("/");
             })
             .addCase(loginUser.rejected, (state) => {
-                console.log("login is not working");
                 state.status = "error";
             });
     },
