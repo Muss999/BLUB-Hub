@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ActivateAccPage from "../pages/ActivateAccPage";
+import ChangePasswordPage from "../pages/ChangePasswordPage";
 
 const MainRouting = () => {
     return (
@@ -10,6 +11,7 @@ const MainRouting = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/activate-acc" element={<ActivateAccPage />} />
+            <Route path="/change-password" element={<ChangePasswordPage />} />
         </Routes>
     );
 };
