@@ -1,6 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API } from "../../helpers/consts";
+import { getAuthConfig } from "../../helpers/functions";
+
+const config = getAuthConfig();
 
 export const registerUser = createAsyncThunk(
     "account/registerUser",
@@ -29,5 +32,21 @@ export const loginUser = createAsyncThunk(
             formData
         );
         return { data, navigate, userEmail: userObj.email };
+    }
+);
+
+export const changePassword = createAsyncThunk(
+    "account/loginUser",
+    async ({ userObj, navigate }) => {
+        let formData = new FormData();
+        formData.append("old_password", userObj.oldPassword);
+        formData.append("new_password", userObj.newPassword);
+        formData.append("new_password_confirm", userObj.newPasswordConfirm);
+        let { data } = await axios.post(
+            `${API}/api/v1/account/change_password/`,
+            formData,
+            config ? config : null
+        );
+        return { data, navigate };
     }
 );

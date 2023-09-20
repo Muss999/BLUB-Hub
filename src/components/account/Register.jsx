@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./register.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearStatus } from "../../store/account/accountSlice";
-import { registerUser } from "../../store/account/accountAction";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../store/account/accountAction";
 
 const Register = () => {
     const [userObj, setUserObj] = useState({
@@ -35,6 +35,8 @@ const Register = () => {
                     <input
                         type="email"
                         placeholder="Email"
+                        maxLength="254"
+                        minLength="1"
                         onChange={(e) =>
                             setUserObj({ ...userObj, email: e.target.value })
                         }
@@ -42,6 +44,8 @@ const Register = () => {
                     <input
                         type="text"
                         placeholder="UserName"
+                        maxLength="12"
+                        minLength="1"
                         onChange={(e) =>
                             setUserObj({ ...userObj, login: e.target.value })
                         }
@@ -49,6 +53,8 @@ const Register = () => {
                     <input
                         type="password"
                         placeholder="Password"
+                        maxLength="128"
+                        minLength="6"
                         onChange={(e) =>
                             setUserObj({ ...userObj, password: e.target.value })
                         }
@@ -56,6 +62,8 @@ const Register = () => {
                     <input
                         type="password"
                         placeholder="password Confirm"
+                        maxLength="128"
+                        minLength="6"
                         onChange={(e) =>
                             setUserObj({
                                 ...userObj,

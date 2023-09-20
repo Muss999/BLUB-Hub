@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./accountAction";
+import { changePassword, loginUser, registerUser } from "./accountAction";
 import { addDataToLocalStorage, updateToken } from "../../helpers/functions";
 
 const accountSlice = createSlice({

@@ -33,6 +33,7 @@ const Login = () => {
                     <input
                         type="email"
                         placeholder="Email"
+                        minLength="1"
                         onChange={(e) =>
                             setUserObj({ ...userObj, email: e.target.value })
                         }

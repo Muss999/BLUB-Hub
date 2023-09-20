@@ -17,6 +17,13 @@ const Navbar = () => {
                 <>
                     <button
                         onClick={() => {
+                            navigate("/change-password");
+                        }}
+                    >
+                        Change Password
+                    </button>
+                    <button
+                        onClick={() => {
                             logout();
                             navigate("/");
                         }}
