@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginUser, registerUser } from "./accountAction";
-import { addDataToLocalStorage, updateToken } from "../../helpers/functions";
+import { createVideo } from "./videoAction";
 
 const accountSlice = createSlice({
     name: "account",
@@ -10,7 +9,9 @@ const accountSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase();
+        builder.addCase(createVideo.fulfilled, (_, action) => {
+            action.payload.navigate("/");
+        });
     },
 });
 

@@ -3,12 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ActivateAccPage from "../pages/ActivateAccPage";
-<<<<<<< HEAD
 import VideosListPage from "../pages/VideosListPage";
-=======
 import ChangePasswordPage from "../pages/ChangePasswordPage";
 import ChangePassByEmailPage from "../pages/ChangePassByEmailPage";
->>>>>>> 9967faf99ea96ce1c0e4f468ffc885fc5f3ce44f
+import VideoCreatePage from "../pages/VideoCreatePage";
 
 const MainRouting = () => {
     return (
@@ -22,6 +20,7 @@ const MainRouting = () => {
                 path="/change-password-by-email"
                 element={<ChangePassByEmailPage />}
             />
+            <Route path="/video-create" element={<VideoCreatePage />} />
         </Routes>
     );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import VideosList from "../components/videos/VideosList";
+import VideosList from "../components/videos/videoList/VideosList";
 
 const VideosListPage = () => {
     return (
