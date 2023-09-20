@@ -51,7 +51,7 @@ const ChangePassword = () => {
                 Change Password
             </button>
 
-            <p onClick={() => navigate("/change-password-by-email")}>
+            <p onClick={() => navigate("/change-pass-get-code")}>
                 Forgot your password?
             </p>
         </div>
