@@ -55,6 +55,9 @@ const Login = () => {
                     >
                         Login
                     </button>
+                    <p onClick={() => navigate("/change-pass-get-code")}>
+                        Forgot your password?
+                    </p>
                 </div>
             )}
         </div>

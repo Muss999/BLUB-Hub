@@ -6,7 +6,10 @@ import ActivateAccPage from "../pages/ActivateAccPage";
 import VideosListPage from "../pages/VideosListPage";
 import ChangePasswordPage from "../pages/ChangePasswordPage";
 import ChangePassByEmailPage from "../pages/ChangePassByEmailPage";
+
 import VideoCreatePage from "../pages/VideoCreatePage";
+
+import EmailChangePassActivatePage from "../pages/EmailChangePassActivatePage";
 
 const MainRouting = () => {
     return (
@@ -21,6 +24,10 @@ const MainRouting = () => {
                 element={<ChangePassByEmailPage />}
             />
             <Route path="/video-create" element={<VideoCreatePage />} />
+            <Route
+                path="/change-pass-get-code"
+                element={<EmailChangePassActivatePage />}
+            />
         </Routes>
     );
 };
