@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { changePassword } from "../../store/account/accountAction";
+import { changePassByCode } from "../../store/account/accountAction";
 
 const ChangePassByEmail = () => {
-    const [userObj, setUserObj] = useState({});
+    const [userObj, setUserObj] = useState({
+        code: "",
+        email: "",
+        password: "",
+        password_confirm: "",
+    });
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -12,8 +17,16 @@ const ChangePassByEmail = () => {
         <div>
             <h3>Change password by email</h3>
             <input
-                type="password"
-                placeholder="Password"
+                type="text"
+                placeholder="Code"
+                minLength="1"
+                onChange={(e) =>
+                    setUserObj({ ...userObj, code: e.target.value })
+                }
+            />
+            <input
+                type="email"
+                placeholder="Email"
                 minLength="1"
                 onChange={(e) =>
                     setUserObj({ ...userObj, email: e.target.value })
@@ -22,29 +35,27 @@ const ChangePassByEmail = () => {
             <input
                 type="password"
                 placeholder="Password"
-                minLength="1"
+                minLength="4"
                 onChange={(e) =>
-                    setUserObj({ ...userObj, email: e.target.value })
+                    setUserObj({ ...userObj, password: e.target.value })
                 }
             />
             <input
                 type="password"
-                placeholder="Password"
-                minLength="1"
+                placeholder="Password Confirm"
+                minLength="4"
                 onChange={(e) =>
-                    setUserObj({ ...userObj, email: e.target.value })
+                    setUserObj({ ...userObj, passwordConfirm: e.target.value })
                 }
             />
-
             <button
                 onClick={() => {
-                    dispatch(changePassword({ userObj, navigate }));
+                    dispatch(changePassByCode({ userObj, navigate }));
                     navigate("/");
                 }}
             >
                 Change Password
             </button>
-
             <p onClick={() => navigate("/change-password")}>
                 Remember your password?
             </p>
