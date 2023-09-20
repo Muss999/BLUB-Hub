@@ -7,8 +7,6 @@ export const addDataToLocalStorage = (userEmail, tokens) => {
 };
 
 export const updateToken = () => {
-    console.log("updateToken is working");
-
     const updateFunc = setInterval(async () => {
         const tokens = JSON.parse(localStorage.getItem("tokens"));
         if (!tokens) return clearInterval(updateFunc);
