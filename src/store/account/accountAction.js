@@ -28,7 +28,7 @@ export const loginUser = createAsyncThunk(
         formData.append("email", userObj.email);
         formData.append("password", userObj.password);
         let { data } = await axios.post(
-            `${API}/api/v1/account/login/`,
+            `${API}api/v1/account/login/`,
             formData
         );
         return { data, navigate, userEmail: userObj.email };

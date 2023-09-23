@@ -1,0 +1,11 @@
+.videoList_block {
+    display: flex;
+    flex-wrap: wrap;
+}
+.add__btn {
+    display: flex;
+    height: 100px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
