@@ -66,13 +66,22 @@ export const deleteVideo = createAsyncThunk(
 
 export const editVideo = createAsyncThunk(
     "video/editVideo",
-    async ({ newVideoObj, id, navigate }) => {
+    async ({ videoObj, id, navigate }, { dispatch }) => {
+        console.log({ videoObj, id, navigate });
         const config = getAuthConfig();
+        const updatedProduct = new FormData();
+        updatedProduct.append("videos", videoObj.videos);
+        updatedProduct.append("video_preview", videoObj.video_preview);
+        updatedProduct.append("title", videoObj.title);
+        updatedProduct.append("description", videoObj.description);
+        updatedProduct.append("topics", videoObj.topics);
+
         const { data } = await axios.patch(
             `${API}api/v1/videos/${id}/`,
-            newVideoObj,
+            updatedProduct,
             config ? config : null
         );
+        dispatch(getVideos());
         return { data, navigate };
     }
 );

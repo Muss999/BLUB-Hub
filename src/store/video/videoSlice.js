@@ -34,7 +34,6 @@ const accountSlice = createSlice({
             .addCase(getOnePost.fulfilled, (state, action) => {
                 state.loading = false;
                 state.oneVideo = action.payload.data;
-                console.log(action.payload.data);
             })
             .addCase(getVideos.rejected, (state, action) => {
                 state.loading = false;
