@@ -22,7 +22,6 @@ const Register = () => {
 
     return (
         <div>
-            <h3>Register</h3>
             {status === "error" ? (
                 <div>
                     <h3>You catch some ERROR</h3>
@@ -32,12 +31,12 @@ const Register = () => {
                 </div>
             ) : (
                 <div>
-                    <form class="decor">
-                        <div class="form-left-decoration"></div>
-                        <div class="form-right-decoration"></div>
-                        <div class="circle"></div>
-                        <div class="form-inner">
-                            <h3>register</h3>
+                    <form className="decor">
+                        <div className="form-left-decoration"></div>
+                        <div className="form-right-decoration"></div>
+                        <div className="circle"></div>
+                        <div className="form-inner">
+                            <h3>Register</h3>
 
                             <input
                                 type="email"
@@ -93,17 +92,19 @@ const Register = () => {
                             <p
                                 onClick={() =>
                                     navigate("/change-pass-get-code")
-                                }>
+                                }
+                            >
                                 Forgot your password?
                             </p>
                             <input
                                 type="submit"
                                 value="register"
-                                onClick={() =>
+                                onClick={() => {
                                     dispatch(
                                         registerUser({ userObj, navigate })
-                                    )
-                                }
+                                    );
+                                    navigate("/login");
+                                }}
                             />
                         </div>
                     </form>
