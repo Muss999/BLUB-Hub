@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const VideoItem = ({ item }) => {
     const navigate = useNavigate();
     return (
-        <Link to={`/video-details/${item.title}`} className="video_item">
+        <Link to={`/video-details/${item.slug}`} className="video_item">
             <img src={item.video_preview} alt="" width="100px" height="100px" />
             <h3>{item.title}</h3>
         </Link>
