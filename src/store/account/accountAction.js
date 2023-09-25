@@ -14,7 +14,7 @@ export const registerUser = createAsyncThunk(
         formData.append("password", userObj.password);
         formData.append("password_confirm", userObj.passwordConfirm);
         let { data } = await axios.post(
-            `${API}/api/v1/account/register/`,
+            `${API}api/v1/account/register/`,
             formData
         );
         return { data, navigate };
@@ -43,7 +43,7 @@ export const changePassword = createAsyncThunk(
         formData.append("new_password", userObj.newPassword);
         formData.append("new_password_confirm", userObj.newPasswordConfirm);
         let { data } = await axios.post(
-            `${API}/api/v1/account/change_password/`,
+            `${API}api/v1/account/change_password/`,
             formData,
             config ? config : null
         );
@@ -57,7 +57,7 @@ export const getActivateCode = createAsyncThunk(
         let formData = new FormData();
         formData.append("email", userObj.email);
         let { data } = await axios.post(
-            `${API}/api/v1/account/lose_password/`,
+            `${API}api/v1/account/lose_password/`,
             formData
         );
         console.log(data);
@@ -74,7 +74,7 @@ export const changePassByCode = createAsyncThunk(
         formData.append("password", userObj.password);
         formData.append("password_confirm", userObj.passwordConfirm);
         let { data } = await axios.post(
-            `${API}/api/v1/account/lose_confirm/`,
+            `${API}api/v1/account/lose_confirm/`,
             formData
         );
         console.log(data);
