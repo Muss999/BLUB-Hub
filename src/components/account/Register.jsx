@@ -31,7 +31,7 @@ const Register = () => {
                 </div>
             ) : (
                 <div>
-                    <form className="decor">
+                    <div className="decor">
                         <div className="form-left-decoration"></div>
                         <div className="form-right-decoration"></div>
                         <div className="circle"></div>
@@ -65,7 +65,7 @@ const Register = () => {
                             />
 
                             <input
-                                type="password"
+                                type="text"
                                 placeholder="Password"
                                 maxLength="128"
                                 minLength="6"
@@ -78,7 +78,7 @@ const Register = () => {
                             />
 
                             <input
-                                type="password"
+                                type="text"
                                 placeholder="password Confirm"
                                 maxLength="128"
                                 minLength="6"
@@ -103,11 +103,11 @@ const Register = () => {
                                     dispatch(
                                         registerUser({ userObj, navigate })
                                     );
-                                    navigate("/login");
+                                    navigate("/activate-acc");
                                 }}
                             />
                         </div>
-                    </form>
+                    </div>
                 </div>
             )}
         </div>
