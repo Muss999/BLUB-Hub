@@ -76,7 +76,7 @@ export const editVideo = createAsyncThunk(
         updatedProduct.append("description", videoObj.description);
         updatedProduct.append("topics", videoObj.topics);
 
-        const { data } = await axios.patch(
+        const { data } = await axios.put(
             `${API}api/v1/videos/${id}/`,
             updatedProduct,
             config ? config : null
@@ -85,3 +85,8 @@ export const editVideo = createAsyncThunk(
         return { data, navigate };
     }
 );
+
+export const setPage = (page) => ({
+    type: "SET_PAGE",
+    page,
+});

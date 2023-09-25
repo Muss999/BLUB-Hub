@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./register.module.css";
+import "./login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearStatus } from "../../store/account/accountSlice";
 import { useNavigate } from "react-router-dom";
@@ -32,53 +32,81 @@ const Register = () => {
                 </div>
             ) : (
                 <div>
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        maxLength="254"
-                        minLength="1"
-                        onChange={(e) =>
-                            setUserObj({ ...userObj, email: e.target.value })
-                        }
-                    />
-                    <input
-                        type="text"
-                        placeholder="UserName"
-                        maxLength="12"
-                        minLength="1"
-                        onChange={(e) =>
-                            setUserObj({ ...userObj, login: e.target.value })
-                        }
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        maxLength="128"
-                        minLength="6"
-                        onChange={(e) =>
-                            setUserObj({ ...userObj, password: e.target.value })
-                        }
-                    />
-                    <input
-                        type="password"
-                        placeholder="password Confirm"
-                        maxLength="128"
-                        minLength="6"
-                        onChange={(e) =>
-                            setUserObj({
-                                ...userObj,
-                                passwordConfirm: e.target.value,
-                            })
-                        }
-                    />
+                    <form class="decor">
+                        <div class="form-left-decoration"></div>
+                        <div class="form-right-decoration"></div>
+                        <div class="circle"></div>
+                        <div class="form-inner">
+                            <h3>register</h3>
 
-                    <button
-                        onClick={() =>
-                            dispatch(registerUser({ userObj, navigate }))
-                        }
-                    >
-                        Register
-                    </button>
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                maxLength="254"
+                                minLength="1"
+                                onChange={(e) =>
+                                    setUserObj({
+                                        ...userObj,
+                                        email: e.target.value,
+                                    })
+                                }
+                            />
+
+                            <input
+                                type="text"
+                                placeholder="UserName"
+                                maxLength="12"
+                                minLength="1"
+                                onChange={(e) =>
+                                    setUserObj({
+                                        ...userObj,
+                                        login: e.target.value,
+                                    })
+                                }
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                maxLength="128"
+                                minLength="6"
+                                onChange={(e) =>
+                                    setUserObj({
+                                        ...userObj,
+                                        password: e.target.value,
+                                    })
+                                }
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="password Confirm"
+                                maxLength="128"
+                                minLength="6"
+                                onChange={(e) =>
+                                    setUserObj({
+                                        ...userObj,
+                                        passwordConfirm: e.target.value,
+                                    })
+                                }
+                            />
+                            <p
+                                onClick={() =>
+                                    navigate("/change-pass-get-code")
+                                }>
+                                Forgot your password?
+                            </p>
+                            <input
+                                type="submit"
+                                value="register"
+                                onClick={() =>
+                                    dispatch(
+                                        registerUser({ userObj, navigate })
+                                    )
+                                }
+                            />
+                        </div>
+                    </form>
                 </div>
             )}
         </div>
