@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./login.module.css";
+import "./login.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearStatus } from "../../store/account/accountSlice";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ const Login = () => {
                 </div>
             ) : (
                 <div>
-                    <input
+                    {/* <input
                         type="email"
                         placeholder="Email"
                         minLength="1"
@@ -51,13 +51,53 @@ const Login = () => {
                     <button
                         onClick={() =>
                             dispatch(loginUser({ userObj, navigate }))
-                        }
-                    >
+                        }>
                         Login
-                    </button>
-                    <p onClick={() => navigate("/change-pass-get-code")}>
-                        Forgot your password?
-                    </p>
+                    </button> */}
+
+                    <form class="decor">
+                        <div class="form-left-decoration"></div>
+                        <div class="form-right-decoration"></div>
+                        <div class="circle"></div>
+                        <div class="form-inner">
+                            <h3>Login</h3>
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                minLength="1"
+                                onChange={(e) =>
+                                    setUserObj({
+                                        ...userObj,
+                                        email: e.target.value,
+                                    })
+                                }
+                            />
+                            <input
+                                type="password"
+                                minLength="6"
+                                placeholder="Password"
+                                onChange={(e) =>
+                                    setUserObj({
+                                        ...userObj,
+                                        password: e.target.value,
+                                    })
+                                }
+                            />
+                            <p
+                                onClick={() =>
+                                    navigate("/change-pass-get-code")
+                                }>
+                                Forgot your password?
+                            </p>
+                            <input
+                                type="submit"
+                                value="Login"
+                                onClick={() =>
+                                    dispatch(loginUser({ userObj, navigate }))
+                                }
+                            />
+                        </div>
+                    </form>
                 </div>
             )}
         </div>

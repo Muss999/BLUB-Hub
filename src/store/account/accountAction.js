@@ -14,7 +14,7 @@ export const registerUser = createAsyncThunk(
         formData.append("password", userObj.password);
         formData.append("password_confirm", userObj.passwordConfirm);
         let { data } = await axios.post(
-            `${API}/api/v1/account/register/`,
+            `${API}api/v1/account/register/`,
             formData
         );
         return { data, navigate };

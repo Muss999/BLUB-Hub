@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createVideo, getVideos, getOnePost, editVideo } from "./videoAction";
+import { setPage } from "./videoAction";
 
 const accountSlice = createSlice({
     name: "account",
