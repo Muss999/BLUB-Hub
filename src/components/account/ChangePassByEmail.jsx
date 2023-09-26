@@ -33,7 +33,7 @@ const ChangePassByEmail = () => {
                 }
             />
             <input
-                type="password"
+                type="text"
                 placeholder="Password"
                 minLength="4"
                 onChange={(e) =>
@@ -41,7 +41,7 @@ const ChangePassByEmail = () => {
                 }
             />
             <input
-                type="password"
+                type="text"
                 placeholder="Password Confirm"
                 minLength="4"
                 onChange={(e) =>
