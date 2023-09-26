@@ -26,13 +26,6 @@ const VideosList = () => {
                     ))}
                 </>
             )}
-            {isUserLogin && (
-                <div className="add__btn">
-                    <button onClick={() => navigate("/video-create")}>
-                        AddVideo
-                    </button>
-                </div>
-            )}
         </div>
     );
 };
