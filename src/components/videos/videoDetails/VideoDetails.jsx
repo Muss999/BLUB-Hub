@@ -55,7 +55,8 @@ const VideoDetails = () => {
                                                     borderRadius: "10px", // Add rounded corners
                                                     boxShadow:
                                                         "px 4px 6px rgba(0, 0, 0, 0.8)", // Add a subtle shadow
-                                                }}></video>
+                                                }}
+                                            ></video>
                                             <div className="info__block">
                                                 <h2>{oneVideo.title}</h2>
                                                 <p>
@@ -70,7 +71,8 @@ const VideoDetails = () => {
                                                 </p>
                                                 <div
                                                     className=""
-                                                    style={{ display: "flex" }}>
+                                                    style={{ display: "flex" }}
+                                                >
                                                     <div className="like__block">
                                                         <img
                                                             className="likeIcon"
@@ -99,13 +101,15 @@ const VideoDetails = () => {
                                             onClick={() => {
                                                 dispatch(deleteVideo({ id }));
                                                 navigate("/");
-                                            }}>
+                                            }}
+                                        >
                                             delete
                                         </button>
                                         <button
                                             onClick={() => {
                                                 navigate(`/video-edit/${id}`);
-                                            }}>
+                                            }}
+                                        >
                                             edit
                                         </button>
                                     </div>
@@ -122,7 +126,8 @@ const VideoDetails = () => {
                                             dispatch(
                                                 addComment({ commentObj, id })
                                             );
-                                        }}>
+                                        }}
+                                    >
                                         Add comment
                                     </button>
                                     <div className="comments__block">
@@ -130,9 +135,14 @@ const VideoDetails = () => {
                                             {oneVideo.comments.length}{" "}
                                             коментариев
                                         </h2>
-                                        {oneVideo.comments.map((item) => (
-                                            <CommentItem item={item} />
-                                        ))}
+                                        {oneVideo.comments.map(
+                                            (item, index) => (
+                                                <CommentItem
+                                                    key={index}
+                                                    item={item}
+                                                />
+                                            )
+                                        )}
                                     </div>
                                 </>
                             ) : (

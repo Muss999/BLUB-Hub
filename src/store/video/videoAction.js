@@ -3,18 +3,21 @@ import axios from "axios";
 import { API } from "../../helpers/consts";
 import { getAuthConfig } from "../../helpers/functions";
 
-export const getVideos = createAsyncThunk("video/getVideos", async () => {
-    const { data } = await axios.get(`${API}api/v1/videos/`);
-    return { data };
-});
+export const getVideos = createAsyncThunk(
+    "videos/getVideos",
+    async (_, { getState }) => {
+        const { search } = getState().videos;
+        const { data } = await axios.get(
+            `${API}api/v1/videos/?search=${search}`
+        );
+        return { data };
+    }
+);
 export const createVideo = createAsyncThunk(
-    "video/createVideo",
-
+    "videos/createVideo",
     async ({ videoObj, navigate }, { dispatch }) => {
         const config = getAuthConfig();
-
         const newVideo = new FormData();
-
         newVideo.append("videos", videoObj.videos);
         newVideo.append("video_preview", videoObj.video_preview);
         newVideo.append("title", videoObj.title);
@@ -36,7 +39,7 @@ export const createVideo = createAsyncThunk(
     }
 );
 export const getOnePost = createAsyncThunk(
-    "video/getOnePost",
+    "videos/getOnePost",
     async ({ id }) => {
         try {
             const { data } = await axios.get(`${API}api/v1/videos/${id}/`);
@@ -48,7 +51,7 @@ export const getOnePost = createAsyncThunk(
 );
 
 export const deleteVideo = createAsyncThunk(
-    "video/deleteVideo",
+    "videos/deleteVideo",
     async ({ id }, { dispatch }) => {
         const config = getAuthConfig();
 
@@ -65,7 +68,7 @@ export const deleteVideo = createAsyncThunk(
 );
 
 export const editVideo = createAsyncThunk(
-    "video/editVideo",
+    "videos/editVideo",
     async ({ videoObj, id, navigate }, { dispatch }) => {
         console.log({ videoObj, id, navigate });
         const config = getAuthConfig();
@@ -87,7 +90,7 @@ export const editVideo = createAsyncThunk(
 );
 
 export const addComment = createAsyncThunk(
-    "video/addComment",
+    "videos/addComment",
     async ({ commentObj, id }, { dispatch }) => {
         const config = getAuthConfig();
         const comment = new FormData();
