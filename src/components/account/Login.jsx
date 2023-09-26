@@ -20,7 +20,6 @@ const Login = () => {
 
     return (
         <div>
-            <h3>Login</h3>
             {status === "error" ? (
                 <div>
                     <h3>you catch some ERROR</h3>
@@ -30,36 +29,11 @@ const Login = () => {
                 </div>
             ) : (
                 <div>
-                    {/* <input
-                        type="email"
-                        placeholder="Email"
-                        minLength="1"
-                        onChange={(e) =>
-                            setUserObj({ ...userObj, email: e.target.value })
-                        }
-                    />
-
-                    <input
-                        type="password"
-                        minLength="6"
-                        placeholder="Password"
-                        onChange={(e) =>
-                            setUserObj({ ...userObj, password: e.target.value })
-                        }
-                    />
-
-                    <button
-                        onClick={() =>
-                            dispatch(loginUser({ userObj, navigate }))
-                        }>
-                        Login
-                    </button> */}
-
-                    <form class="decor">
-                        <div class="form-left-decoration"></div>
-                        <div class="form-right-decoration"></div>
-                        <div class="circle"></div>
-                        <div class="form-inner">
+                    <div className="decor">
+                        <div className="form-left-decoration"></div>
+                        <div className="form-right-decoration"></div>
+                        <div className="circle"></div>
+                        <div className="form-inner">
                             <h3>Login</h3>
                             <input
                                 type="email"
@@ -86,18 +60,21 @@ const Login = () => {
                             <p
                                 onClick={() =>
                                     navigate("/change-pass-get-code")
-                                }>
+                                }
+                            >
                                 Forgot your password?
                             </p>
-                            <input
-                                type="submit"
-                                value="Login"
-                                onClick={() =>
-                                    dispatch(loginUser({ userObj, navigate }))
-                                }
-                            />
+                            <button
+                                className="login-btn"
+                                onClick={() => {
+                                    dispatch(loginUser({ userObj, navigate }));
+                                    navigate("/");
+                                }}
+                            >
+                                Login
+                            </button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             )}
         </div>
