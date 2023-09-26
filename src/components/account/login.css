@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 body {
-    background: #f69a73;
+    background: #3b3b3b;
 }
 .decor {
     position: relative;
@@ -17,7 +17,7 @@ body {
     position: absolute;
     width: 50px;
     height: 20px;
-    background: #f69a73;
+    background: #3b3b3b;
     border-radius: 20px;
 }
 .form-left-decoration {
@@ -80,8 +80,8 @@ body {
 }
 .form-inner input[type="submit"] {
     margin-top: 30px;
-    background: #f69a73;
-    border-bottom: 4px solid #d87d56;
+    background: rgb(181, 181, 181);
+    border-bottom: 4px solid rgb(146, 145, 145);
     color: white;
     font-size: 14px;
 }
