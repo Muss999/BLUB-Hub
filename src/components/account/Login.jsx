@@ -47,7 +47,7 @@ const Login = () => {
                                 }
                             />
                             <input
-                                type="text"
+                                type="password"
                                 minLength="6"
                                 placeholder="Password"
                                 onChange={(e) =>

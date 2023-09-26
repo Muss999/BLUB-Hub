@@ -77,7 +77,6 @@ export const changePassByCode = createAsyncThunk(
             `${API}api/v1/account/lose_confirm/`,
             formData
         );
-        console.log(data);
         return { data, navigate };
     }
 );
