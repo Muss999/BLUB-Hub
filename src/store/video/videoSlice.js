@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createVideo, getVideos, getOnePost, editVideo } from "./videoAction";
 import { setPage } from "./videoAction";
 
-const accountSlice = createSlice({
-    name: "account",
+const videoSlice = createSlice({
+    name: "videos",
     initialState: {
         currentAccount: null,
         status: "",
@@ -11,10 +11,17 @@ const accountSlice = createSlice({
         loading: false,
         oneVideo: null,
         error: "",
+        search: "",
+        currentPage: 1,
+        totalPages: 1,
     },
     reducers: {
         clearOneVideoState: (state) => {
             state.oneVideo = null;
+        },
+        changeSearchVal: (state, action) => {
+            state.search = action.payload.search;
+            state.currentPage = 1;
         },
     },
     extraReducers: (builder) => {
@@ -46,6 +53,6 @@ const accountSlice = createSlice({
     },
 });
 
-export const { clearOneVideoState } = accountSlice.actions;
+export const { clearOneVideoState, changeSearchVal } = videoSlice.actions;
 
-export default accountSlice.reducer;
+export default videoSlice.reducer;
