@@ -78,7 +78,8 @@ const VideoCreate = () => {
                             ...videoObj,
                             selectedCategory: parseInt(e.target.value),
                         })
-                    }>
+                    }
+                >
                     {categories.map((category) => (
                         <option key={category.id} value={category.id}>
                             {category.name}
@@ -89,7 +90,8 @@ const VideoCreate = () => {
                 <button
                     onClick={() =>
                         dispatch(createVideo({ videoObj, navigate }))
-                    }>
+                    }
+                >
                     add video
                 </button>
             </div>
