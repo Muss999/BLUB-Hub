@@ -9,6 +9,7 @@ import likeIcon from "./img/1555605-200-removebg-preview.png";
 import disLiekItem from "./img/images-removebg-preview (1).png";
 import { addComment } from "../../../store/video/videoAction";
 import CommentItem from "./comment/CommentItem";
+import { toggleLike } from "../../../store/video/videoAction";
 
 const VideoDetails = () => {
     const { id } = useParams();
@@ -75,6 +76,13 @@ const VideoDetails = () => {
                                                             className="likeIcon"
                                                             src={likeIcon}
                                                             alt=""
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    toggleLike({
+                                                                        id,
+                                                                    })
+                                                                )
+                                                            }
                                                         />
                                                     </div>
                                                     <div className="like__block">

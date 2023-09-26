@@ -101,3 +101,10 @@ export const addComment = createAsyncThunk(
         return { data };
     }
 );
+
+export const toggleLike = createAsyncThunk(
+    "video/addComment",
+    async ({ id }) => {
+        await axios.post(`${API}api/v1/videos/${id}/like/`);
+    }
+);
