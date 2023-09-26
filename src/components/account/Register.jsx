@@ -65,7 +65,7 @@ const Register = () => {
                             />
 
                             <input
-                                type="text"
+                                type="password"
                                 placeholder="Password"
                                 maxLength="128"
                                 minLength="6"
@@ -78,7 +78,7 @@ const Register = () => {
                             />
 
                             <input
-                                type="text"
+                                type="password"
                                 placeholder="password Confirm"
                                 maxLength="128"
                                 minLength="6"
