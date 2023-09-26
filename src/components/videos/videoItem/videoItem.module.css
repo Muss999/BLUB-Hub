@@ -1,0 +1,30 @@
+.video_container {
+  width: 31%;
+  height: 300px;
+  /* border: 1px solid rgb(255, 0, 0); */
+  margin: 5px;
+  cursor: pointer;
+  background-color: rgba(204, 204, 204, 0.3);
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(204, 204, 204, 0.4);
+  border-radius: 20px;
+  /* margin-right: 1%; */
+}
+.video_preview_container {
+  max-width: 93%;
+  border-radius: 5px;
+}
+.video_preview_container img {
+  margin: 4% 4% 4% 4%;
+  width: 100%;
+  border-radius: 5px;
+
+  height: 220px;
+}
+
+.video_item_text {
+  text-decoration: none;
+  margin: -3% 4%;
+  /* bottom: 5%; */
+}
