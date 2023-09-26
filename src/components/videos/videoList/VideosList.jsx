@@ -15,24 +15,16 @@ const VideosList = () => {
         dispatch(getVideos());
     }, []);
 
-    console.log(videos);
     return (
         <div className="videoList_block">
             {loading ? (
                 <h2>loading...</h2>
             ) : (
                 <>
-                    {videos.map((item) => (
-                        <VideoItem item={item} />
+                    {videos.map((item, index) => (
+                        <VideoItem key={index} item={item} />
                     ))}
                 </>
-            )}
-            {isUserLogin && (
-                <div className="add__btn">
-                    <button onClick={() => navigate("/video-create")}>
-                        AddVideo
-                    </button>
-                </div>
             )}
         </div>
     );

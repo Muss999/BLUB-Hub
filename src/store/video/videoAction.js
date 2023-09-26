@@ -86,7 +86,18 @@ export const editVideo = createAsyncThunk(
     }
 );
 
-export const setPage = (page) => ({
-    type: "SET_PAGE",
-    page,
-});
+export const addComment = createAsyncThunk(
+    "video/addComment",
+    async ({ commentObj, id }, { dispatch }) => {
+        const config = getAuthConfig();
+        const comment = new FormData();
+        comment.append("body", commentObj.body);
+        const { data } = await axios.post(
+            `${API}api/v1/videos/${id}/comments/`,
+            comment,
+            config ? config : null
+        );
+        dispatch(getVideos());
+        return { data };
+    }
+);

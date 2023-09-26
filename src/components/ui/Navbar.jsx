@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import styles from "./navbar.module.css";
+import "./navbar.css";
 import { useNavigate } from "react-router-dom";
 import { logout, updateToken } from "../../helpers/functions";
 import { isUserLogin } from "../../helpers/functions";
+import { IoIosSearch } from "react-icons/io";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -11,10 +12,23 @@ const Navbar = () => {
         updateToken();
     }, []);
     return (
-        <div>
+        <div className="navbar__block">
             <button onClick={() => navigate("/")}>Home</button>
+
+            <div className="youtube-style-input">
+                <input type="text" placeholder="Поиск" />
+                <button type="submit">
+                    <IoIosSearch size={20} />
+                </button>
+            </div>
+
             {isUserLogin() ? (
-                <>
+                <div>
+                    <div>
+                        <button onClick={() => navigate("/video-create")}>
+                            AddVideo
+                        </button>
+                    </div>
                     <button
                         onClick={() => {
                             navigate("/change-password");
@@ -28,7 +42,7 @@ const Navbar = () => {
                         }}>
                         Logout
                     </button>
-                </>
+                </div>
             ) : (
                 <>
                     <button onClick={() => navigate("/register")}>

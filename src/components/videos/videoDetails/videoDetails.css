@@ -1,0 +1,30 @@
+.video__block {
+    display: flex;
+}
+.info__block {
+    width: 40%;
+    height: 500px;
+    background: rgb(181, 181, 181);
+    border-bottom: 4px solid rgb(95, 95, 95);
+    font-size: 14px;
+    padding: 30px;
+    border-radius: 10px;
+}
+.info__block p {
+    color: black;
+    font-size: 17px;
+}
+.likeIcon {
+    width: 70%;
+    filter: invert(100%);
+}
+.like__block {
+    width: 45px;
+    height: 45px;
+    background-color: black;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+}
