@@ -106,8 +106,21 @@ export const addComment = createAsyncThunk(
 );
 
 export const toggleLike = createAsyncThunk(
-    "video/addComment",
+    "video/toggleLike",
     async ({ id }) => {
-        await axios.post(`${API}api/v1/videos/${id}/like/`);
+        const config = getAuthConfig();
+        try {
+            const response = await axios.post(
+                `${API}api/v1/videos/${id}/like/`,
+                null, // Пустое тело запроса, если данные не требуются
+                config ? config : null
+            );
+            console.log("Успешный запрос:", response.data);
+            // Вы можете здесь выполнить дополнительные действия, например, обновить данные в Redux Store
+            return response.data; // Вернуть данные, если необходимо
+        } catch (error) {
+            console.error("Ошибка запроса:", error);
+            throw error; // Повторно выбросить ошибку для обработки в компоненте
+        }
     }
 );
