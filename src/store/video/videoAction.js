@@ -41,12 +41,13 @@ export const createVideo = createAsyncThunk(
 export const getOnePost = createAsyncThunk(
     "videos/getOnePost",
     async ({ id }) => {
-        try {
-            const { data } = await axios.get(`${API}api/v1/videos/${id}/`);
-            return { data };
-        } catch (error) {
-            throw error;
-        }
+        const config = getAuthConfig();
+
+        const { data } = await axios.get(
+            `${API}api/v1/videos/${id}/`,
+            config ? config : null
+        );
+        return { data };
     }
 );
 
@@ -107,20 +108,39 @@ export const addComment = createAsyncThunk(
 
 export const toggleLike = createAsyncThunk(
     "video/toggleLike",
-    async ({ id }) => {
+    async ({ id }, { dispatch }) => {
         const config = getAuthConfig();
         try {
             const response = await axios.post(
                 `${API}api/v1/videos/${id}/like/`,
-                null, // Пустое тело запроса, если данные не требуются
+                null,
                 config ? config : null
             );
             console.log("Успешный запрос:", response.data);
-            // Вы можете здесь выполнить дополнительные действия, например, обновить данные в Redux Store
-            return response.data; // Вернуть данные, если необходимо
+            dispatch(getOnePost({ id }));
+            return response.data;
         } catch (error) {
             console.error("Ошибка запроса:", error);
-            throw error; // Повторно выбросить ошибку для обработки в компоненте
+            throw error;
+        }
+    }
+);
+export const toggleDislike = createAsyncThunk(
+    "video/toggleDislike",
+    async ({ id }, { dispatch }) => {
+        const config = getAuthConfig();
+        try {
+            const response = await axios.post(
+                `${API}api/v1/videos/${id}/dislike/`,
+                null,
+                config ? config : null
+            );
+            dispatch(getOnePost({ id }));
+            console.log("Успешный запрос:", response.data);
+            return response.data;
+        } catch (error) {
+            console.error("Ошибка запроса:", error);
+            throw error;
         }
     }
 );

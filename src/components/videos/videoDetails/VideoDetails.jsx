@@ -10,12 +10,14 @@ import disLiekItem from "./img/images-removebg-preview (1).png";
 import { addComment } from "../../../store/video/videoAction";
 import CommentItem from "./comment/CommentItem";
 import { toggleLike } from "../../../store/video/videoAction";
+import { toggleDislike } from "../../../store/video/videoAction";
 
 const VideoDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { oneVideo, error, loading } = useSelector((state) => state.videos);
+
     useEffect(() => {
         dispatch(getOnePost({ id }));
         return () => {
@@ -26,7 +28,7 @@ const VideoDetails = () => {
     const [commentObj, setCommentObj] = useState({
         body: "",
     });
-    console.log(oneVideo);
+    let user = localStorage.getItem("account");
 
     return (
         <div>
@@ -55,8 +57,7 @@ const VideoDetails = () => {
                                                     borderRadius: "10px", // Add rounded corners
                                                     boxShadow:
                                                         "px 4px 6px rgba(0, 0, 0, 0.8)", // Add a subtle shadow
-                                                }}
-                                            ></video>
+                                                }}></video>
                                             <div className="info__block">
                                                 <h2>{oneVideo.title}</h2>
                                                 <p>
@@ -70,79 +71,118 @@ const VideoDetails = () => {
                                                     {oneVideo.description}
                                                 </p>
                                                 <div
-                                                    className=""
-                                                    style={{ display: "flex" }}
-                                                >
+                                                    className="likes_dislikes"
+                                                    style={{ display: "flex" }}>
                                                     <div className="like__block">
-                                                        <img
-                                                            className="likeIcon"
-                                                            src={likeIcon}
-                                                            alt=""
+                                                        <div
+                                                            className="like__block_img"
                                                             onClick={() =>
                                                                 dispatch(
                                                                     toggleLike({
                                                                         id,
                                                                     })
                                                                 )
-                                                            }
-                                                        />
+                                                            }>
+                                                            <img
+                                                                className="likeIcon"
+                                                                src={likeIcon}
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <h2>
+                                                            {oneVideo.likes}
+                                                        </h2>
                                                     </div>
+                                                    {/* toggleDislike */}
                                                     <div className="like__block">
-                                                        <img
-                                                            className="likeIcon"
-                                                            src={disLiekItem}
-                                                            alt=""
-                                                        />
+                                                        <div
+                                                            className="like__block_img"
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    toggleDislike(
+                                                                        {
+                                                                            id,
+                                                                        }
+                                                                    )
+                                                                )
+                                                            }>
+                                                            <img
+                                                                className="likeIcon"
+                                                                src={
+                                                                    disLiekItem
+                                                                }
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <h2>
+                                                            {oneVideo.dislikes}
+                                                        </h2>
                                                     </div>
+                                                </div>
+                                                <div className="">
+                                                    {user != oneVideo.uesr && (
+                                                        <>
+                                                            <button
+                                                                onClick={() => {
+                                                                    dispatch(
+                                                                        deleteVideo(
+                                                                            {
+                                                                                id,
+                                                                            }
+                                                                        )
+                                                                    );
+                                                                    navigate(
+                                                                        "/"
+                                                                    );
+                                                                }}>
+                                                                delete
+                                                            </button>
+                                                            <button
+                                                                onClick={() => {
+                                                                    navigate(
+                                                                        `/video-edit/${id}`
+                                                                    );
+                                                                }}>
+                                                                edit
+                                                            </button>
+                                                        </>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="comment-input">
+                                        <textarea
+                                            id="comment-text"
+                                            placeholder="Оставьте комментарий"
+                                            type="text"
+                                            onChange={(e) =>
+                                                setCommentObj({
+                                                    body: e.target.value,
+                                                })
+                                            }></textarea>
                                         <button
                                             onClick={() => {
-                                                dispatch(deleteVideo({ id }));
-                                                navigate("/");
-                                            }}
-                                        >
-                                            delete
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                navigate(`/video-edit/${id}`);
-                                            }}
-                                        >
-                                            edit
+                                                dispatch(
+                                                    addComment({
+                                                        commentObj,
+                                                        id,
+                                                    })
+                                                );
+                                            }}>
+                                            Add comment
                                         </button>
                                     </div>
-                                    <input
-                                        type="text"
-                                        onChange={(e) =>
-                                            setCommentObj({
-                                                body: e.target.value,
-                                            })
-                                        }
-                                    />
-                                    <button
-                                        onClick={() => {
-                                            dispatch(
-                                                addComment({ commentObj, id })
-                                            );
-                                        }}
-                                    >
-                                        Add comment
-                                    </button>
+
                                     <div className="comments__block">
                                         <h2>
                                             {oneVideo.comments.length}{" "}
                                             коментариев
                                         </h2>
-                                        {oneVideo.comments.map(
-                                            (item, index) => (
-                                                <CommentItem
-                                                    key={index}
-                                                    item={item}
-                                                />
-                                            )
-                                        )}
+                                        {oneVideo.comments.map((item) => (
+                                            <CommentItem item={item} />
+                                        ))}
                                     </div>
                                 </>
                             ) : (

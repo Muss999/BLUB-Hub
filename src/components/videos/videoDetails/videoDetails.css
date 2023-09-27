@@ -18,7 +18,7 @@
     width: 70%;
     filter: invert(100%);
 }
-.like__block {
+.like__block_img {
     width: 45px;
     height: 45px;
     background-color: black;
@@ -27,4 +27,45 @@
     align-items: center;
     justify-content: center;
     margin-right: 30px;
+}
+.likes_dislikes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.like__block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Ваш CSS-код */
+.comment-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 60px;
+}
+
+.comment__button {
+    margin-top: 8px;
+    padding: 8px 16px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.comment__button:hover {
+    background-color: #0057b3;
 }

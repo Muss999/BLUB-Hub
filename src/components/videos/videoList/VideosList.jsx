@@ -14,6 +14,7 @@ const VideosList = () => {
     useEffect(() => {
         dispatch(getVideos());
     }, []);
+    console.log(videos);
     return (
         <div className="videoList_block">
             {loading ? (
