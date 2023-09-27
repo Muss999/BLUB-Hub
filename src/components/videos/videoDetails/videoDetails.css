@@ -1,71 +1,153 @@
-.video__block {
-    display: flex;
-}
-.info__block {
-    width: 40%;
-    height: 500px;
-    background: rgb(181, 181, 181);
-    border-bottom: 4px solid rgb(95, 95, 95);
-    font-size: 14px;
-    padding: 30px;
-    border-radius: 10px;
-}
-.info__block p {
-    color: black;
-    font-size: 17px;
-}
-.likeIcon {
-    width: 70%;
-    filter: invert(100%);
-}
-.like__block_img {
-    width: 45px;
-    height: 45px;
-    background-color: black;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 30px;
-}
-.likes_dislikes {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.like__block {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+/* videoDetails.css */
+
+/* Общий контейнер */
+.video-details-container {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Ваш CSS-код */
+/* Заголовок видео */
+.video-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    text-transform: none;
+}
+
+/* Информация о видео (создано и описание) */
+.video-info {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Видео плеер */
+.main-video {
+    width: 40vw;
+    height: 40vh;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Лайки и дизлайки */
+.likes-dislikes {
+    display: flex;
+    margin-top: 20px;
+}
+
+.like-block,
+.dislike-block {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.likeIcon,
+.dislikeIcon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    margin-right: 10px;
+    fill: #333;
+    transition: fill 0.2s;
+}
+
+.likeIcon:hover,
+.dislikeIcon:hover {
+    fill: #ff0000;
+}
+
+/* Управление видео (удаление и редактирование) */
+.video-actions {
+    display: flex;
+    margin-top: 20px;
+}
+
+.video-actions button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-transform: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.video-actions button:hover {
+    background-color: #dd0000;
+}
+
+/* Ввод комментария */
 .comment-input {
     display: flex;
     flex-direction: column;
-    margin-bottom: 16px;
 }
-
-textarea {
+.comment-input textarea {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    margin-top: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
-    min-height: 60px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 14px;
 }
 
-.comment__button {
-    margin-top: 8px;
-    padding: 8px 16px;
-    background-color: #0073e6;
-    color: white;
+.comment-input button {
+    width: 25%;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #ff0000;
+    color: #fff;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
+    text-transform: none;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-.comment__button:hover {
-    background-color: #0057b3;
+.comment-input button:hover {
+    background-color: #dd0000;
+}
+
+/* Комментарии */
+.comments-block {
+    margin-top: 20px;
+}
+
+.comments-count {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: none;
+}
+.Video_details_block {
+    display: flex;
+    justify-content: space-around;
+}
+.hiden_video_list {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .hiden_video_list {
+        display: block;
+    }
+    .right__block {
+        display: none;
+    }
+    .main-video {
+        width: 90vw;
+    }
+    .comment-input button {
+        width: 100%;
+    }
 }
