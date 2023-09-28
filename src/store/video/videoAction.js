@@ -54,7 +54,6 @@ export const deleteVideo = createAsyncThunk(
     "videos/deleteVideo",
     async ({ id }, { dispatch }) => {
         const config = getAuthConfig();
-
         try {
             await axios.delete(
                 `${API}api/v1/videos/${id}/`,
