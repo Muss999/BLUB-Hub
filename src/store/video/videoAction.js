@@ -144,3 +144,46 @@ export const toggleDislike = createAsyncThunk(
         }
     }
 );
+
+export const createWatchLater = createAsyncThunk(
+    "video/watchLater",
+    async ({ watchLaterObj, id, navigate }, { dispatch }) => {
+        try {
+            const config = getAuthConfig();
+            const watchLaterVideo = new FormData();
+            watchLaterVideo.append("video", watchLaterObj.video);
+            watchLaterVideo.append(
+                "video_preview",
+                watchLaterObj.video_preview
+            );
+            watchLaterVideo.append("title", watchLaterObj.title);
+            watchLaterVideo.append("description", watchLaterObj.description);
+            watchLaterVideo.append("topics", watchLaterObj.topics);
+            const { data } = await axios.post(
+                `${API}api/v1/videos/${id}/watch_later/`,
+                watchLaterVideo,
+                config ? config : null
+            );
+            dispatch(getVideos());
+            return { data, navigate };
+        } catch (error) {
+            throw error;
+        }
+    }
+);
+
+export const getWatchLater = createAsyncThunk(
+    "video/getWatchLater",
+    async () => {
+        const config = getAuthConfig();
+        try {
+            const { data } = await axios.get(
+                `${API}api/v1/watch_later/`,
+                config ? config : null
+            );
+            return { data };
+        } catch (error) {
+            throw error;
+        }
+    }
+);

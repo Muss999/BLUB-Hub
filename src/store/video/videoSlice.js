@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createVideo, getVideos, getOnePost, editVideo } from "./videoAction";
+import {
+    createVideo,
+    getVideos,
+    getOnePost,
+    editVideo,
+    getWatchLater,
+    createWatchLater,
+} from "./videoAction";
 import { setPage } from "./videoAction";
 
 const videoSlice = createSlice({
@@ -14,6 +21,7 @@ const videoSlice = createSlice({
         search: "",
         currentPage: 1,
         totalPages: 1,
+        watchLater: [],
     },
     reducers: {
         clearOneVideoState: (state) => {
@@ -51,6 +59,16 @@ const videoSlice = createSlice({
             })
             .addCase(editVideo.fulfilled, (_, action) => {
                 action.payload.navigate("/");
+            })
+            .addCase(getWatchLater.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getWatchLater.fulfilled, (state, action) => {
+                state.loading = false;
+                state.watchLater = action.payload.data.results;
+            })
+            .addCase(createWatchLater.fulfilled, (_, action) => {
+                action.payload.navigate("/watch-later");
             });
     },
 });

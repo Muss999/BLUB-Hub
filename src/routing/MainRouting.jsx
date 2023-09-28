@@ -10,6 +10,7 @@ import VideoCreatePage from "../pages/VideoCreatePage";
 import EmailChangePassActivatePage from "../pages/EmailChangePassActivatePage";
 import VideoDetailsPage from "../pages/VideoDetailsPage";
 import VideoEditPage from "../pages/VideoEditPage";
+import WatchLaterPage from "../pages/WatchLaterPage";
 
 const MainRouting = () => {
     return (
@@ -30,6 +31,7 @@ const MainRouting = () => {
             />
             <Route path="/video-details/:id" element={<VideoDetailsPage />} />
             <Route path="/video-edit/:id" element={<VideoEditPage />} />
+            <Route path="/watch-later/" element={<WatchLaterPage />} />
         </Routes>
     );
 };
