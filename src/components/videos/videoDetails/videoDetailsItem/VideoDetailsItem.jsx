@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./videoDetailsItem.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createWatchLater } from "../../../../store/video/videoAction";
 
 const VideoDetailsItem = ({ item }) => {
+    const id = item.slug;
+    const dispatch = useDispatch();
+    const [watchLaterObj, setWatchLaterObj] = useState({
+        video: item.video,
+    });
+    const navigate = useNavigate();
     return (
         <div class="video-item-container">
             <div class="video-preview">
@@ -12,7 +21,21 @@ const VideoDetailsItem = ({ item }) => {
                 <div class="video-info">
                     <h3 class="video-title">{item.title}</h3>
                 </div>
-                <button class="add-to-queue-button">Добавить в очередь</button>
+                <button
+                    class="add-to-queue-button"
+                    onClick={() => {
+                        dispatch(
+                            createWatchLater({
+                                watchLaterObj,
+                                id,
+                                navigate,
+                            })
+                        );
+                    }}>
+                    {" "}
+                    watch later
+                </button>
+                <div></div>
             </div>
         </div>
     );
