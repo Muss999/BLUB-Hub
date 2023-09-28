@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getOnePost, deleteVideo } from "../../../store/video/videoAction";
+import {
+    getOnePost,
+    deleteVideo,
+    getVideos,
+} from "../../../store/video/videoAction";
 import { clearOneVideoState } from "../../../store/video/videoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,14 +13,21 @@ import likeIcon from "./img/1555605-200-removebg-preview.png";
 import disLiekItem from "./img/images-removebg-preview (1).png";
 import { addComment } from "../../../store/video/videoAction";
 import CommentItem from "./comment/CommentItem";
+import { toggleLike } from "../../../store/video/videoAction";
+import { toggleDislike } from "../../../store/video/videoAction";
+import VideoDetailsItem from "./videoDetailsItem/VideoDetailsItem";
 
 const VideoDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { oneVideo, error, loading } = useSelector((state) => state.videos);
+    const { videos, oneVideo, error, loading } = useSelector(
+        (state) => state.videos
+    );
+
     useEffect(() => {
         dispatch(getOnePost({ id }));
+        dispatch(getVideos());
         return () => {
             dispatch(clearOneVideoState());
         };
@@ -25,120 +36,177 @@ const VideoDetails = () => {
     const [commentObj, setCommentObj] = useState({
         body: "",
     });
-    console.log(oneVideo);
+    let user = localStorage.getItem("account");
 
     return (
-        <div>
+        <div className="video-details-container">
             {loading ? (
                 <h3>Loading</h3>
             ) : (
                 <>
                     {error ? (
-                        <h2>{error.message}</h2>
+                        <h2 className="error-message">{error.message}</h2>
                     ) : (
                         <>
                             {oneVideo ? (
-                                <>
-                                    <div className="">
-                                        <div className="video__block">
+                                <div className="Video_details_block">
+                                    <div>
+                                        <div className="video-block">
                                             <video
                                                 src={oneVideo.videos}
                                                 controls
                                                 preload="auto"
-                                                className="main__video"
-                                                style={{
-                                                    width: "100%", // Keep the width at 100% to maintain aspect ratio
-                                                    maxWidth: "800px", // Set a maximum width if necessary
-                                                    height: "500px",
-                                                    display: "block", // Center the video horizontally
-                                                    borderRadius: "10px", // Add rounded corners
-                                                    boxShadow:
-                                                        "px 4px 6px rgba(0, 0, 0, 0.8)", // Add a subtle shadow
-                                                }}
-                                            ></video>
-                                            <div className="info__block">
-                                                <h2>{oneVideo.title}</h2>
-                                                <p>
-                                                    {" "}
+                                                className="main-video"></video>
+                                            <div className="info-block">
+                                                <h2 className="video-title">
+                                                    {oneVideo.title}
+                                                </h2>
+                                                <p className="video-info">
                                                     создано:{" "}
                                                     {oneVideo.created_at}
                                                 </p>
-                                                <p>
-                                                    {" "}
+                                                <p className="video-info">
                                                     описание:{" "}
                                                     {oneVideo.description}
                                                 </p>
-                                                <div
-                                                    className=""
-                                                    style={{ display: "flex" }}
-                                                >
-                                                    <div className="like__block">
-                                                        <img
-                                                            className="likeIcon"
-                                                            src={likeIcon}
-                                                            alt=""
-                                                        />
+                                                <div className="likes-dislikes">
+                                                    <div className="like-block">
+                                                        <div
+                                                            className="like-block-img"
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    toggleLike({
+                                                                        id,
+                                                                    })
+                                                                )
+                                                            }>
+                                                            <img
+                                                                className="likeIcon"
+                                                                src={likeIcon}
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <h2>
+                                                            {oneVideo.likes}
+                                                        </h2>
                                                     </div>
-                                                    <div className="like__block">
-                                                        <img
-                                                            className="likeIcon"
-                                                            src={disLiekItem}
-                                                            alt=""
-                                                        />
+                                                    <div className="dislike-block">
+                                                        <div
+                                                            className="dislike-block-img"
+                                                            onClick={() =>
+                                                                dispatch(
+                                                                    toggleDislike(
+                                                                        {
+                                                                            id,
+                                                                        }
+                                                                    )
+                                                                )
+                                                            }>
+                                                            <img
+                                                                className="dislikeIcon"
+                                                                src={
+                                                                    disLiekItem
+                                                                }
+                                                                alt=""
+                                                            />
+                                                        </div>
+                                                        <h2>
+                                                            {oneVideo.dislikes}
+                                                        </h2>
                                                     </div>
+                                                </div>
+                                                <div className="video-actions">
+                                                    {user != oneVideo.uesr && (
+                                                        <>
+                                                            <button
+                                                                onClick={() => {
+                                                                    dispatch(
+                                                                        deleteVideo(
+                                                                            {
+                                                                                id,
+                                                                            }
+                                                                        )
+                                                                    );
+                                                                    navigate(
+                                                                        "/"
+                                                                    );
+                                                                }}
+                                                                className="delete-button">
+                                                                Удалить
+                                                            </button>
+                                                            <button
+                                                                onClick={() => {
+                                                                    navigate(
+                                                                        `/video-edit/${id}`
+                                                                    );
+                                                                }}
+                                                                className="edit-button">
+                                                                Редактировать
+                                                            </button>
+                                                        </>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
-                                        <button
-                                            onClick={() => {
-                                                dispatch(deleteVideo({ id }));
-                                                navigate("/");
-                                            }}
-                                        >
-                                            delete
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                navigate(`/video-edit/${id}`);
-                                            }}
-                                        >
-                                            edit
-                                        </button>
-                                    </div>
-                                    <input
-                                        type="text"
-                                        onChange={(e) =>
-                                            setCommentObj({
-                                                body: e.target.value,
-                                            })
-                                        }
-                                    />
-                                    <button
-                                        onClick={() => {
-                                            dispatch(
-                                                addComment({ commentObj, id })
-                                            );
-                                        }}
-                                    >
-                                        Add comment
-                                    </button>
-                                    <div className="comments__block">
-                                        <h2>
-                                            {oneVideo.comments.length}{" "}
-                                            коментариев
-                                        </h2>
-                                        {oneVideo.comments.map(
-                                            (item, index) => (
-                                                <CommentItem
+                                        <div className="hiden_video_list">
+                                            {videos.map((item, index) => (
+                                                <VideoDetailsItem
                                                     key={index}
                                                     item={item}
                                                 />
-                                            )
-                                        )}
+                                            ))}
+                                        </div>
+                                        <div className="comment-input">
+                                            <textarea
+                                                id="comment-text"
+                                                placeholder="Оставьте комментарий"
+                                                type="text"
+                                                onChange={(e) =>
+                                                    setCommentObj({
+                                                        body: e.target.value,
+                                                    })
+                                                }
+                                                className="czomment-textarea"></textarea>
+                                            <button
+                                                onClick={() => {
+                                                    dispatch(
+                                                        addComment({
+                                                            commentObj,
+                                                            id,
+                                                        })
+                                                    );
+                                                }}
+                                                className="add-comment-button">
+                                                Добавить комментарий
+                                            </button>
+                                        </div>
+
+                                        <div className="comments-block">
+                                            <h2 className="comments-count">
+                                                {oneVideo.comments.length}{" "}
+                                                комментариев
+                                            </h2>
+                                            {oneVideo.comments.map((item) => (
+                                                <CommentItem
+                                                    item={item}
+                                                    key={item.id}
+                                                />
+                                            ))}
+                                        </div>
                                     </div>
-                                </>
+                                    <div className="right__block">
+                                        {videos.map((item, index) => (
+                                            <VideoDetailsItem
+                                                key={index}
+                                                item={item}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
                             ) : (
-                                <p>No video data available</p>
+                                <p className="no-data-message">
+                                    Нет данных о видео
+                                </p>
                             )}
                         </>
                     )}

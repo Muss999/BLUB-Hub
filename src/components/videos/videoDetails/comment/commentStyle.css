@@ -1,0 +1,35 @@
+/* Контейнер для комментариев */
+.comment-container {
+    width: 100%;
+    background-color: #cecbcb; /* Светлый фон */
+    border: 1px solid #ccc; /* Рамка вокруг комментария */
+    border-radius: 5px; /* Скругление углов */
+    padding: 15px; /* Отступы вокруг комментария */
+    margin-bottom: 20px; /* Отступ снизу каждого комментария */
+}
+
+/* Заголовок комментария */
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px; /* Размер шрифта для заголовка */
+    font-weight: bold; /* Жирный шрифт для заголовка */
+    margin-bottom: 10px; /* Отступ снизу заголовка */
+}
+
+/* Информация об авторе комментария */
+.comment-author {
+    font-weight: bold;
+}
+
+/* Информация о дате размещения комментария */
+.comment-date {
+    color: #888; /* Светло-серый цвет для даты */
+}
+
+/* Текст комментария */
+.comment-text {
+    font-size: 14px; /* Размер шрифта для текста комментария */
+    line-height: 1.4; /* Интервал между строками */
+}

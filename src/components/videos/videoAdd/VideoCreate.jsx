@@ -63,6 +63,7 @@ const VideoCreate = () => {
                 <input
                     type="text"
                     placeholder="description"
+                    className="input__video"
                     onChange={(e) =>
                         setVideoObj({
                             ...videoObj,
@@ -78,8 +79,7 @@ const VideoCreate = () => {
                             ...videoObj,
                             selectedCategory: parseInt(e.target.value),
                         })
-                    }
-                >
+                    }>
                     {categories.map((category) => (
                         <option key={category.id} value={category.id}>
                             {category.name}
@@ -90,8 +90,7 @@ const VideoCreate = () => {
                 <button
                     onClick={() =>
                         dispatch(createVideo({ videoObj, navigate }))
-                    }
-                >
+                    }>
                     add video
                 </button>
             </div>

@@ -31,6 +31,7 @@ const videoSlice = createSlice({
             })
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.loading = false;
+                console.log(action.payload);
                 state.videos = action.payload.data.results;
             })
             .addCase(createVideo.fulfilled, (_, action) => {
@@ -42,6 +43,7 @@ const videoSlice = createSlice({
             .addCase(getOnePost.fulfilled, (state, action) => {
                 state.loading = false;
                 state.oneVideo = action.payload.data;
+                console.log(action.payload.data);
             })
             .addCase(getVideos.rejected, (state, action) => {
                 state.loading = false;
@@ -54,5 +56,4 @@ const videoSlice = createSlice({
 });
 
 export const { clearOneVideoState, changeSearchVal } = videoSlice.actions;
-
 export default videoSlice.reducer;

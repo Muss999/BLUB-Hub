@@ -1,7 +1,106 @@
-.navbar__block {
-    margin: 30px 0px;
+/* Navbar */
+.navbar {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    background-color: #333; /* Черный фон */
+    padding: 10px 20px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.menu-button,
+.logo-link {
+    text-decoration: none;
+    color: #ffffff; /* Белый цвет для текста и иконок */
+    background-color: black;
+    border: none;
+    font-size: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.navbar-center {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #444; /* Цвет фона поля поиска */
+    color: #fff; /* Цвет текста в поле поиска */
+    margin-right: 10px;
+}
+
+.search-button {
+    background-color: #ff0000; /* Красный цвет для кнопки поиска */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.icon-button {
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.youtube-icon {
+    color: #ff0000; /* Красный цвет для иконки YouTube */
+}
+
+/* Navbar */
+/* ... (ваш существующий CSS для навбара) */
+
+/* Sidebar */
+.sidebar {
+    width: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+.sidebar.open {
+    width: 240px; /* Ширина сайдбара при открытии */
+}
+
+/* Дополнительные стили для элементов сайдбара */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* ... (другие стили для элементов сайдбара) */
 }
 .youtube-style-input {
     display: flex;
@@ -9,7 +108,7 @@
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 2px 30px;
+    padding: 4px 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -28,6 +127,45 @@
     cursor: pointer;
 }
 
-.youtube-style-input .react-icons {
+.youtube-style-input i.fa-search {
     color: #888;
+    font-size: 20px;
+}
+.right__navbar__block p {
+    color: white;
+}
+.right__navbar__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20vw;
+}
+.right__navbar__block__img {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: center;
+    transition: 0.5s;
+}
+.right__navbar__block__img > img {
+    width: 35px;
+    height: 35px;
+}
+.right__navbar__block__img:hover {
+    background-color: rgba(206, 206, 206, 0.213);
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+}
+.sidebar__block {
+    width: 100px;
+}
+.sidebar__block button {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 990px) {
+    .right__navbar__block {
+        display: none;
+    }
 }
