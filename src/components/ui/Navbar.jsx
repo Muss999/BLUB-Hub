@@ -70,7 +70,8 @@ const Navbar = () => {
                                     style={{
                                         marginBottom: "10px",
                                         marginTop: "10px",
-                                    }}>
+                                    }}
+                                >
                                     Home
                                 </button>
                             </li>
@@ -80,25 +81,31 @@ const Navbar = () => {
                                     <button
                                         onClick={() => {
                                             navigate("/change-password");
-                                        }}>
+                                        }}
+                                    >
                                         Change Password
                                     </button>
                                     <button
                                         onClick={() => {
                                             logout();
                                             navigate("/");
-                                        }}>
+                                        }}
+                                    >
                                         Logout
                                     </button>
                                     <button
-                                        onClick={() =>
-                                            navigate("/watch-later")
-                                        }>
+                                        onClick={() => navigate("/watch-later")}
+                                    >
                                         Watch Later
                                     </button>
 
                                     <div className="sidebar-footer">
-                                        <button className="upload-button">
+                                        <button
+                                            className="upload-button"
+                                            onClick={() =>
+                                                navigate("/video-create")
+                                            }
+                                        >
                                             Загрузить видео
                                         </button>
                                     </div>
@@ -106,7 +113,8 @@ const Navbar = () => {
                             ) : (
                                 <div className="sidebar__block">
                                     <button
-                                        onClick={() => navigate("/register")}>
+                                        onClick={() => navigate("/register")}
+                                    >
                                         Register
                                     </button>
                                     <button onClick={() => navigate("/login")}>
@@ -143,7 +151,8 @@ const Navbar = () => {
                             <>
                                 <div
                                     className="right__navbar__block__img"
-                                    onClick={() => navigate("/video-create")}>
+                                    onClick={() => navigate("/video-create")}
+                                >
                                     <img src={create_icon} alt="" />
                                 </div>
                                 <p>{user}</p>
