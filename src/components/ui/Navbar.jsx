@@ -108,6 +108,9 @@ const Navbar = () => {
                                         >
                                             Загрузить видео
                                         </button>
+                                        <a href="http://172.20.10.3:8000/">
+                                            Chat
+                                        </a>
                                     </div>
                                 </div>
                             ) : (
