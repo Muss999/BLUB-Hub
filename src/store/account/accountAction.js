@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API } from "../../helpers/consts";
 import { getAuthConfig } from "../../helpers/functions";
+import { getVideos } from "../video/videoAction";
 
 const config = getAuthConfig();
 
