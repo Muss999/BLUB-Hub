@@ -31,6 +31,7 @@ const videoSlice = createSlice({
             })
             .addCase(getVideos.fulfilled, (state, action) => {
                 state.loading = false;
+                console.log(action.payload);
                 state.videos = action.payload.data.results;
             })
             .addCase(createVideo.fulfilled, (_, action) => {
